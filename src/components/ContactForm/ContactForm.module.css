@@ -2,12 +2,21 @@
    display: flex;
    flex-direction: column;
    border-radius: 5px;
+   gap: 15px;
  }
- .formInput {
-   display: block;
-   margin: 10px 0;
-   outline: none;
+ .label {
+   display: flex;
+   flex-direction: column;
+   font-size: 20px;
  }
- .formBtn {
-   padding: 5px 20px;
+ 
+ .input {
+   padding: 5px;
+   margin-top: 5px;
  }
+ 
+ .submit {
+   padding: 5px 10px;
+   cursor: pointer;
+ }
+ 

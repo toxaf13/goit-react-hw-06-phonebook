@@ -1,5 +1,10 @@
  .filterInput {
-   display: block;
-   margin: 10px 0;
-   outline: none;
+   padding: 5px;
+   margin-bottom: 5px;
+ }
+ .label{
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   font-size: 20px;
  }

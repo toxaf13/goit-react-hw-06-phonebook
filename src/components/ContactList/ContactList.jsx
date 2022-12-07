@@ -1,32 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./ContactList.module.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/phoneBook';
+import style from './ContactList.module.css';
 
-const ContactList = ({ contacts, handleDelete }) => {
+const ContactList = () => {
+  const contacts = useSelector(state => state.phoneBook.items);
+  const filter = useSelector(state => state.phoneBook.filter);
+  const dispatch = useDispatch();
+
   return (
-    <ul className={styles.contactList}>
-      {contacts.map(({ id, name, number }) => (
-        <li key={id} className={styles.contactListItem}>
-          <p className={styles.contactsName}>
+    <ul className={style.list}>
+      {contacts
+        .filter(el => el.name.toLowerCase().includes(filter))
+        .map(({ id, number, name }) => (
+          <li className={style.item} key={id}>
             {name}: {number}
-          </p>
-
-          <button
-            className={styles.contactsBtn}
-            type="button"
-            onClick={() => handleDelete(id)}
-          >
-            Delete
-          </button>
-        </li>
-      ))}
+            <button
+              className={style.deleteBtn}
+              type="button"
+              onClick={() => dispatch(deleteContact({ id }))}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
     </ul>
   );
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  handleDelete: PropTypes.func.isRequired,
 };
 
 export default ContactList;
